@@ -93,6 +93,22 @@ let sizedata = shipdata.filter(function (e) {
 		return e.size == Stat1;	
 });
 
+
+sizedata.sort(function(a, b) {
+  var modelA = a.model.toUpperCase(); // ignore upper and lowercase
+  var modelB = b.model.toUpperCase(); // ignore upper and lowercase
+  if (modelA < modelB) {
+    return -1;
+  }
+  if (modelA > modelB) {
+    return 1;
+  }
+
+  // names must be equal
+  return 0;
+});
+
+
 //Build table and add output
 		var col = [ "Model", "ID" ];
 
