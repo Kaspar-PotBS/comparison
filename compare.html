@@ -74,10 +74,25 @@ function googleTranslateElementInit() {
 <script>
 $.getJSON("js/shipdata.json", function(json) {
 	  
-	var testdata =  json.Ships;
+	var shipdata =  json.Ships;
 	
-	const arr = testdata.map(i => `${i.model}`);
-	const arr1 = testdata.map(i => `${i.ID}`);
+	shipdata.sort(function(a, b) {
+  var modelA = a.model.toUpperCase(); // ignore upper and lowercase
+  var modelB = b.model.toUpperCase(); // ignore upper and lowercase
+  if (modelA < modelB) {
+    return -1;
+  }
+  if (modelA > modelB) {
+    return 1;
+  }
+
+  // names must be equal
+  return 0;
+});
+	
+	
+	const arr = shipdata.map(i => `${i.model}`);
+	const arr1 = shipdata.map(i => `${i.ID}`);
 	
 
 shipselect = document.getElementById('ship');
