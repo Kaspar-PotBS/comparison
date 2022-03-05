@@ -16,23 +16,9 @@
 	</head>
 	<body>
 	  <h1 style="display: none;">Massively Multiplayer, Online, Role Playing Game, MMO, RPG, MMORPG, Computer Game, PC Gaming, Console</h1>
-	  <div id="above_header">&nbsp;
+	  <div id="above_header" style="padding-bottom:0px;">&nbsp;
 	  
-	  
-	  <div style="width: 40%; float: left; text-align: left; margin-left:5px;" id="google_translate_element"></div>
-	<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'und', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-}
-	</script>
-	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-	  
-<div style="width: 40%; float: right; text-align: right; margin-left:5px;">	  
-	  <select id="format" onchange="Formatsetting(this.value);">   
-<option value="0">1,234.56</option>
-<option value="1" selected>1.234,56</option>
-	</select>
-</div>
+
 </div>
 	  
 	  <div id="header">
@@ -42,18 +28,48 @@ function googleTranslateElementInit() {
 <area shape="rect" coords="800, 0, 950, 200" href="http://www.burningsea.com" target="_blank">
 </map>
 	  </div>
+	  
+	  
+	  
 	  <div id="topnav">
 		<div class="nav"><a href="index.html">Shipyard</a></div>
 		<div class="nav"><a href="shipindex.html">Ship Index</a></div>
 		<div class="nav t1"><a href="compare.html">Ship Compare</a></div>
+		
+		
+		<div style="width: 45%; float: right; text-align: right; margin-top:5px;">
+				
+<select id="dataset" name="versionset" onchange="DataSetChangeReset();" style="height:25px">   
+<option value="0">2.10.x Legacy</option>
+<option value="1" selected>2.17.x Antigua & Roberts</option>
+	</select>
+	
+	<select id="format" onchange="Formatsetting(this.value);" style="height:25px">   
+<option value="0">1,234.56</option>
+<option value="1" selected>1.234,56</option>
+	</select>
+	
+	<div style="width: 40%; float: right; text-align: left; margin-left:5px; margin-right:-10px;" id="google_translate_element"></div>
+	
+	
+</div>	
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'und', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+	</script>
+	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
 		
 	  </div>
 	  <div id="main">	
 
 <div id="mediumInnerWrapper">
 	<div>
-	<div style="float:left;">
-	<h1 style="font-variant: small-caps;" ID="model_a_header">Select a ship</h1>
+	<div class="ship-drop" style="float:left; width:365px; text-align: left;">
+	<h1 style="font-variant: small-caps; height: 45px" ID="model_a_header">Select a ship</h1>
 	Compare:
 	<select id="ship" name="ship1" onchange="StatsLookupA(this.value);">
 	   <option value="9999999">-- n/a --</option>
@@ -62,8 +78,8 @@ function googleTranslateElementInit() {
 	</div>
 	
 	
-	<div style="float:right;">
-	<h1 style="font-variant: small-caps;" ID="model_b_header">Select a ship</h1>
+	<div class="ship-drop1" style="float:right; width:365px; text-align: left;">
+	<h1 style="font-variant: small-caps; height: 45px" ID="model_b_header">Select a ship</h1>
 	Compare To:
 	<select id="shipb" name="ship2" onchange="StatsLookupB(this.value);">
 	   <option value="9999999">-- n/a --</option>
@@ -72,9 +88,26 @@ function googleTranslateElementInit() {
 	</div>
 	</div>
 <script>
+function BuildDropdowns(){
+};
 $.getJSON("js/shipdata.json", function(json) {
 	  
-	var shipdata =  json.Ships;
+	  
+	  var DatasetValue = [];
+	  var DatasetValue = document.getElementById("dataset").value;
+	  
+	  
+	  if (DatasetValue == "0")
+	{
+	var shipdata = json.Legacy;
+	}
+	else
+	
+	var shipdata = json.Ships;
+	  
+	  
+	  
+	//var shipdata =  json.Ships;
 	
 	shipdata.sort(function(a, b) {
   var modelA = a.model.toUpperCase(); // ignore upper and lowercase
@@ -107,8 +140,10 @@ ship1select.options[ship1select.options.length] = new Option(Stat1, Stat2);
 
 });
 </script>  
+
+
 	
-	
+	<br>
 	<hr/>
 
 <!-- Compare values for a side -->	
@@ -170,9 +205,9 @@ ship1select.options[ship1select.options.length] = new Option(Stat1, Stat2);
 	
 	<!-- <label for="catcollapse" class="category-button" id="collapse-category"><input type="checkbox" name="catcollapse" id="catcollapse" value="Y" class="checkbox" /><h3 id="icon0" class="collapseicon">-</h3></label> -->
 	
-	<div class="collapse-info" style="text-align-last: center;">Click a section header to collapse/expand that section</div>
+	<div class="collapse-info" style="text-align-last: center;">Click a category header to collapse/expand the category</div>
 	
-	
+	<label for="catcollapse" class="category-button" id="collapse-category"><input type="checkbox" name="catcollapse" id="catcollapse" value="Y" class="checkbox" /><h3 id="icon0" class="collapseicon">-</h3></label>
 	<label for="catcollapse0" class="category-button" id="feature-category"><input type="checkbox" name="catcollapse0" id="catcollapse0" value="Y" class="checkbox" /><h3 class="compact">Ship Basic</h3></label>
 	<table id="cl0" class="plain" style="width: 100%; margin: 0px 0px 10px 0px; border: 1px solid #efb168; ">
 	  <tr>
@@ -1236,10 +1271,7 @@ ship1select.options[ship1select.options.length] = new Option(Stat1, Stat2);
 </div>
 	  </div>
 	   <style>
-sup {
-    vertical-align: super;
-    font-size: smaller;
-}
+
 </style>
 	 <div id="footer" style="color: #999999;line-height: 15px;">
 		<div style="width: 40%; float: left; text-align: left; margin-left:5px;">
@@ -1265,5 +1297,7 @@ sup {
 	<script type="text/javascript" src="js/updatestatsb.js"></script>
 	<script src="js/urlhash.js"></script>
 	<script src="js/collapsecategory.js"></script>
+	<script src="js/datasetchangereset.js"></script>
+	<script src="js/builddropdowns.js"></script>
 	</body>
 </html>

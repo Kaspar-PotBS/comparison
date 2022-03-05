@@ -10,36 +10,18 @@
 	  <meta name="verify-v1" content="i5+ERmckQeqrasCASz/2aLDIdc7428Jyvt3qyNydf54="/>
 	  <meta name="robots" content="index, follow"/>
 	  <link rel="stylesheet" type="text/css" href="includes/screen.css"/>
+	  <!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
 	  <script src="js/jquery-3.6.0.min.js"></script>
 	</head>
 	
-	
-	
-	<body>
+	<body style="margin:0px;">
 	  <h1 style="display: none;">Massively Multiplayer Online Role Playing Game, MMO, RPG</h1>
 	  
-<div id="above_header">&nbsp;
-	  <div style="width: 40%; float: left; text-align: left; margin-left:5px;" id="google_translate_element"></div>
-	<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'und', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-}
-	</script>
-	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> 
-
-
-<div style="width: 40%; float: right; text-align: right; margin-left:5px;">
-<select id="format" onchange="ShipyardFormat(this.value);" style="display:none">   
-<option value="0">1,234.56</option>
-<option value="1" selected>1.234,56</option>
-	</select>
-</div>	
+<div id="above_header" style="padding-bottom:0px;">&nbsp;	
 	</div>
 
-
 </div>
-	  
-	  
+	   
 	  <div id="header">
 	  <img src="includes/img/header.gif" usemap="#headermap" border="0">
 <map name="headermap">
@@ -52,6 +34,24 @@ function googleTranslateElementInit() {
 	  <div class="nav"><a href="index.html">Shipyard</a></div>
 		<div class="nav"><a href="shipindex.html">Ship Index</a></div>
 		<div class="nav"><a href="compare.html">Ship Compare</a></div>
+		
+		<div style="width: 40%; float: right; text-align: right; margin:5px;">
+<select id="dataset-select" onchange="formChanged();" style="height:25px">   
+<option value="0">2.10.x Legacy</option>
+<option value="1" selected>2.17.x Antigua & Roberts</option>
+	</select>
+	
+	<div style="width: 40%; float: right; text-align: left; margin-left:5px; margin-right:5px" id="google_translate_element"></div>
+	
+</div>	
+	
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'und', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+	</script>
+	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> 
+	
 	  </div>
 	  <div id="main">
 		
@@ -67,9 +67,33 @@ function formChanged() {
   fs.style.border = "1px solid green";
   fs.style.cursor = "pointer";
   sp.style.backgroundColor = "#fcd46b";
+  var fs = document.getElementById('filterReset');
+  var sp = document.getElementById('filterResetMsg');
+  fs.disabled = false;
+  fs.style.backgroundColor = "#99EF59";
+  fs.style.color = "black";
+  fs.style.fontWeight = "bold";
+  fs.style.border = "1px solid green";
+  fs.style.cursor = "pointer";
+  sp.style.backgroundColor = "#fcd46b";
   return;
 }
 </script>
+<script>
+function filterreset() {
+$( 'input[type="checkbox"]' ).prop('checked', true);
+
+$('#levelRangeFrom option').prop('selected', function() {
+    return this.defaultSelected;
+});
+$('#levelRangeTo option').prop('selected', function() {
+    return this.defaultSelected;
+});
+
+filterscript1();
+};
+</script>
+
 
 <div class="filterDivWrapper">
 
@@ -186,12 +210,12 @@ function formChanged() {
 </div>
 
 
-
 <div class="filterDivWrapper labelWrapper" style="width: 540px; margin: 0 0 0 0">
 
   <div class="filterDivLabel labelInfo">Show Info:</div>
   <div id="filterSubmitMsg" class="filterDiv" style="width: 140px; height: 19px; text-align: center; padding-top: 3px;">
 	<button id="filterSubmit" class="filterDivBtn btnselect" disabled="disabled" onclick="filterscript1()">UPDATE</button>
+	<button id="filterReset" class="filterDivBtn btnselect" onclick="filterreset()">&#8635;</button>
   </div>
   <div class="filterDiv" style="width: 215px; margin: 0 0 0 0">
   
@@ -267,7 +291,8 @@ function formChanged() {
 	  <input type="checkbox" id="variantStandard" name="variant[]" value="6" checked="checked" onchange="formChanged();">Standard&nbsp;&nbsp;
 	  <input type="checkbox" id="variantHeavy" name="variant[]" value="7" checked="checked" onchange="formChanged();">Heavy&nbsp;&nbsp;
 	  <input type="checkbox" id="variantMastercraft" name="variant[]" value="8" checked="checked" onchange="formChanged();">Mastercraft&nbsp;&nbsp;
-	  <input type="checkbox" id="variantRefit" name="variant[]" value="9" checked="checked" onchange="formChanged();">Refit&nbsp;&nbsp;  </div>
+	  <input type="checkbox" id="variantRefit" name="variant[]" value="9" checked="checked" onchange="formChanged();">Refit&nbsp;&nbsp;  	  
+</div>	  
 </div>
 <div class="filterDivWrapper" style="display:none";>
   <div class="filterDivLabel">Sort by:</div>
@@ -286,7 +311,10 @@ function formChanged() {
 	  <option value="a" selected="selected">Asc</option><option value="d">Desc</option></select>  </div>
 </div>
 </form>
-<div class="collapse-info" style="text-align-last: center;">Click a column header to change sorting. Shift+click a 2. or 3. header in order to multi-sort</div>
+<div class="collapse-info" style="text-align-last: center;">Click a column header to change sorting. Shift+click a 2nd or 3rd header in order to multi-sort</div>
+
+
+
 
 <div id="insert_here_table" style="margin:5px";></div>
 
@@ -296,8 +324,6 @@ var tthtml = '<table id="myId8table1" class="display filter-table-style" style="
 
 $('#insert_here_table').append(tthtml);
 </script>
-
-
 <script>
 $(document).ready( function () {
 $.getJSON("js/shipdata.json", function(json) {
@@ -341,15 +367,8 @@ $.getJSON("js/shipdata.json", function(json) {
 		
 
         // ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        //var divContainer = document.getElementById("myId8table");
-
-		
-        //divContainer.innerHTML = "";
-        //divContainer.appendChild(table);
 		
 	
-
-
 // Hide ID column
             
 			col = 3;
@@ -390,30 +409,30 @@ $.getJSON("js/shipdata.json", function(json) {
     );
   }
 
-
-
 }
 );
-
 
 });
   
 });
 </script>
-
-
 <script>
 function filterscript1() {
 
-
-
-      //$(".tbody1 tr").remove(); 
-	 
 	  $.getJSON("js/shipdata.json", function(json) {
+	
+	var DatasetValue = [];
+	  var DatasetValue = document.getElementById("dataset-select").value;
+	  console.log(DatasetValue);
 	  
-	var array =  json.Ships;
-
+	  if (DatasetValue == "0")
+	{
+	var shipdata = json.Legacy;
+	}
+	else
+	
 	var shipdata = json.Ships;
+	
 
 //Levels
 var levelRangeFrom = document.getElementById("levelRangeFrom").value;
@@ -670,25 +689,16 @@ var tthtml = '<table id="myId8table1" class="display filter-table-style" style="
 $('#insert_here_table').html(tthtml);
 
 
-
-
-
-
-
         // CREATE DYNAMIC TABLE.
         var table = document.getElementById("myId8table1");
-		//table.className = "filter-table-style nowrap hover dataTable no-footer";
 		table.setAttribute("id", "myId8table1");
 		var tbody = document.getElementById("tbody1");
-
-//var divContainer = document.getElementById("myId8table1");
-		
-		//divContainer.innerHTML = "";
 
         
 
         // ADD JSON DATA TO THE TABLE AS ROWS.
-		//var showamount = document.getElementById("showamountrecs").value;
+		var datanum = [];
+		var datanum = document.getElementById("dataset-select").value;
 		var showamount = 999;
 		var spec = [ "level", "model", "ID", "type", "size", "base_durability", "insurance_value", "os_max_speed", "os_best_sailing_point", "cargo_capacity", "crew", "broadside_total_guns", "broadside_weight", "classes" ]
         for (var i = 0; i < selectdata.length; i++) {
@@ -699,14 +709,11 @@ $('#insert_here_table').html(tthtml);
 
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
-				var url = "compare.html#ship=";
-                tabCell.innerHTML = '<a href="'+url+selectdata[i][spec[2]]+'" target="_blank">'+selectdata[i][spec[j]]+'</a>';
+				var url = "compare.html";
+                tabCell.innerHTML = '<a href="'+url+"#dataset="+datanum+"&ship="+selectdata[i][spec[2]]+'" target="_blank">'+selectdata[i][spec[j]]+'</a>';
             }
         }
 
-   
-  
-   
 // Hide ID column
             
 			col = 3;
@@ -729,8 +736,6 @@ $('#insert_here_table').html(tthtml);
 
 
    var table = "$('#myId8table1').dataTable();";
- //table
-  // .clear();
 
 $('#myId8table1').DataTable(
 {
@@ -751,10 +756,7 @@ $('#myId8table1').DataTable(
 	  </div>
 	  
 	  <style>
-sup {
-    vertical-align: super;
-    font-size: smaller;
-}
+
 </style>
 	 <div id="footer" style="color: #999999;line-height: 15px;">
 		<div style="width: 40%; float: left; text-align: left; margin-left:5px;">

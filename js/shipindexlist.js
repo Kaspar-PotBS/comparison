@@ -1,8 +1,19 @@
 function indexfilterscript() {
       
 	  $.getJSON("js/shipdata.json", function(json) {
-
+	
+	
+	var DatasetValue = [];
+	  var DatasetValue = document.getElementById("dataset-select").value;
+	  
+	  if (DatasetValue == "0")
+	{
+	var shipdata = json.Legacy;
+	}
+	else
+	
 	var shipdata = json.Ships;
+	
 
 let size1data = shipdata.filter(function (e) {
 		return e.size == 'Tiny';	
@@ -50,8 +61,8 @@ sizedata.sort(function(a, b) {
 
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
-				var url = "compare.html#ship=";
-                tabCell.innerHTML = '<a href="'+url+sizedata[i][spec[1]]+'" target="_blank">'+sizedata[i][spec[j]]+'</a>';
+				var url = "compare.html";
+                tabCell.innerHTML = '<a href="'+url+"#dataset="+DatasetValue+"&ship="+sizedata[i][spec[1]]+'" target="_blank">'+sizedata[i][spec[j]]+'</a>';
             }
         }
 		
@@ -128,8 +139,8 @@ sizedata.sort(function(a, b) {
 
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
-				var url = "compare.html#ship=";
-                tabCell.innerHTML = '<a href="'+url+sizedata[i][spec[1]]+'" target="_blank">'+sizedata[i][spec[j]]+'</a>';
+				var url = "compare.html";
+                tabCell.innerHTML = '<a href="'+url+"#dataset="+DatasetValue+"&ship="+sizedata[i][spec[1]]+'" target="_blank">'+sizedata[i][spec[j]]+'</a>';
             }
         }
 		
