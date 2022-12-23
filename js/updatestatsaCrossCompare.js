@@ -18,8 +18,9 @@
 				
 		$.getJSON("js/shipdata.json", function(json) {
  
-var DatasetValue = [];
-	  var DatasetValue = document.getElementById("dataset").value;
+
+	var DatasetValue = [0];
+	  /*var DatasetValue = document.getElementById("dataset").value;*/
 	  
 	  if (DatasetValue == "0")
 	{
@@ -28,6 +29,7 @@ var DatasetValue = [];
 	else
 	
 	var shipdata = json.Ships;
+
  
  
 
@@ -430,6 +432,5 @@ document.getElementById("last_updated_a_value").value = ( shipdata[ ShipID ].las
 });
 
 };
-
 var testdrop = 'testdropcall';
 BuildDropdowns(testdrop);
